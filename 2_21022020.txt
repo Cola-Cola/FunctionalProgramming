@@ -1,0 +1,52 @@
+ (define (mean x y)
+    (* 0.5 (+ x y)))
+
+
+(define (f x) (- (sin x) (/ x 2)))
+
+
+(define (equBy2 f a b)
+(if (< (- b a) 1e-7)
+(mean a b)
+(if (> (* (f a ) (f (mean a b))) 0)
+(equBy2 f (mean a b) b)
+(equBy2 f a (mean a b)))))
+> (equby2 f (1))
+
+
+
+--------------------
+
+
+(define (exec x y)
+(if (< (abs (- (* y y) x)) 1e-7)
+y
+(exec x (mean (/ x y) y))))
+
+
+ (define (mySqrt x)
+(exec x 1))
+
+
+
+--------------------
+
+
+(define (exec2 x y)
+(if (<= (abs (- (* y (* y y)) x)) 1e-7)
+y
+(exec2 x (mean (/ x (* y y)) y))))
+
+
+
+ (define (cubiroot x)
+(exec2 x 1))
+
+------------------------
+(define (power x n)
+    (cond ((< n 1) 1)
+          ( (= (REM n 2) 0) (power   
+        (* x (power x (- n 1))))
+
+
+

@@ -1,0 +1,96 @@
+(cons 1 2) - пара
+car ссылку на след элемент
+cdr хвост
+(null? a)
+
+
+(define a '(1 2 3))
+
+(define (sum lst)
+    (if (null? lst) 0
+    (+ (car lst) (sum (cdr lst)))))
+
+
+(define (addback a lst)
+    (if (null? lst) (cons a null)
+        (cons (car lst) (addback a (cdr lst)))))
+
+(addback 10 a)
+
+---------------------------------------
+
+odd? - нечетные
+even? - четные
+
+ (define (filter p lst)
+    (if (null? lst) null	
+        (if (p (car lst))
+            (cons (car lst)
+            (filter p (cdr lst)))
+            (filter p (cdr lst)))))
+(define (map f lst)   
+..   (if (null? lst) (cons lst null)  
+.. (if (f (car lst)) (cons (car lst)  
+.. (map f (cdr lst)))))
+
+-----------------------------------------
+
+Соединить списки
+
+(define (append l1 l2)
+  (if (null? l1)
+      l2
+    (cons (car l1) (append (cdr l1) l2))))
+
+
+-------------------------------------------
+Длина 
+
+(define (len lst) 
+   (if (null? lst) 0 
+     (+ 1 (len (cdr lst)))))   
+
+   (define a '(1 2 3))
+
+   (len a)
+
+
+---------------------------------------------
+
+
+
+
+вычисление функций
+
+(define (sqr x) 
+     (* x x))
+
+(define (map f lst)   
+   (if (null? lst) '()  
+   (cons (f (car lst)) (map f (cdr lst))))
+
+   (map sqr a)
+
+------------------------------------------
+сумму квадратов нечетных элементов списка
+_-----------------------------------------
+
+функция слож умнож вычит... к какому либо элементу
+
+(define (reduce f lst init)
+	(if (null? lst) init
+	(f (car lst) (reduce f (cdr lst) init))))
+
+
+------------------------------------------
+(define (glide lst)
+  (cond ((null? lst) '())      
+        ((pair? (car lst)) 
+            (append (glide (car lst))
+	                  (glide (cdr lst))))
+        (else
+            (cons (car lst)
+                  (glide (cdr lst))))))
+
+(define f '(1 (2) (3 4)))
+
